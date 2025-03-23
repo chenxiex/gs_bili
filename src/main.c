@@ -27,21 +27,9 @@ void OnLogin(void *pCallBack)
     iSize = MultiByteToWideChar(CP_UTF8, 0, pszMultiByte, -1, NULL, 0);
     pwszUnicode = (wchar_t *)malloc(iSize * sizeof(wchar_t));
     MultiByteToWideChar(CP_UTF8, 0, pszMultiByte, -1, pwszUnicode, iSize);
-    // 显示数据用以确认
-    MessageBoxW(NULL, pwszUnicode, L"登录数据", MB_OK | MB_SYSTEMMODAL);
-    switch (MessageBoxW(NULL, L"是否登录?\n请务必确保数据正确!", L"登录确认", MB_YESNO | MB_SYSTEMMODAL))
-    {
-    case 6:
-        // 确认登录, 调用回调
-        puts("yes");
-        CallBack(data, strlen(data));
-        break;
-    default:
-        // 其它操作, 一律取消
-        puts("no");
-        char *data2 = "{\"code\":-2,\"data\":{\"message\":\"cancel\"}}";
-        CallBack(data2, strlen(data2));
-    }
+    // 确认登录, 调用回调
+    puts("yes");
+    CallBack(data, strlen(data));
     // 执行完毕, 停止线程
     _endthread();
 }
