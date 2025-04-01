@@ -1,9 +1,8 @@
 MINGW_LIB ?= /usr/x86_64-w64-mingw32/lib
 VPATH = src lib $(MINGW_LIB)
 
-all: mkdir hook.exe main.dll
-
 .PHONY: mkdir all
+
 all: mkdir hook.exe main.dll
 
 mkdir:
